@@ -21,7 +21,7 @@ class GenerateCode
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $value; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength)];
+            $randomString .= $characters[rand(0, $charactersLength - 1)]; // odstranenie bugu - jednotny tvar kodu
         }
         return $randomString;
     }
@@ -43,6 +43,7 @@ class GenerateCode
         }
 
         $this->writeToFile($arr);
+        // return $arr; // premenna pre pomocny vypis arrayu - check
     }
 
     private function writeToFile($data)
@@ -58,4 +59,4 @@ Pomocny vypis pre overenie funkcnosti kodu
 */
 // $gen_code = new GenerateCode();
 // $new3 = $gen_code->generateRandomCodes(3);
-// var_dump ($new3);
+// var_dump($new3);
