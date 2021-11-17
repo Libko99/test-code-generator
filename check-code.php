@@ -6,8 +6,14 @@ if(!empty($_GET['code'])){
     $codes = json_decode($codes, TRUE);
     if(!empty($codes[$_GET['code']])) {
         echo 'FOUND!!!';
-    } else {
+        
+        unset($codes[$_GET['code']]); // osetrenie opakovania kodu - odstranenie zo zoznamu
+        file_put_contents("codes.txt", json_encode($codes));
+        // var_dump($codes); // pomocny vypis pre overenie funkcnosti   
+    } 
+    else {
         echo 'NOT FOUND :(';
+        // var_dump($codes); // pomocny vypis pre overenie funkcnosti  
     }
 }
 
